@@ -3,6 +3,7 @@ package com.jdriven.blog
 import com.jdriven.blog.model.Author
 import com.jdriven.blog.model.Comment
 import com.jdriven.blog.model.Post
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponseSchema
 import java.time.LocalDate
 import javax.ws.rs.Consumes
 import javax.ws.rs.GET
@@ -15,10 +16,11 @@ import javax.ws.rs.core.Response.Status
 
 @Path("/blog")
 class BlogResource {
-    private val posts = mutableListOf<Post>(EXAMPLE_POST)
+    private val posts = mutableListOf(EXAMPLE_POST)
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @APIResponseSchema(Post::class)
     fun list(): List<Post> {
         return posts
     }
